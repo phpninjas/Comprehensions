@@ -18,11 +18,25 @@ composer.json
 Options
 =======
 
+Imagine if you're using Doctrine, and you don't know if attempting to find an object by id will result in an object or a 
+null value. Thus you might want to wrap the object into an option. It will either be Some[DbObject] or None.
+However, you can still perform mapping operations on it as if it were going to be a DbObject.
+Thus you negate the need for null checks.
+
 ```php
-$option = Option("string")
-$option->map(function($o){
-  return strtoupper($o);
+$product = $entityManager->find('Product', "some identifier");
+
+if ($product === null) {
+    return $product->getName();   
+}
+return "";
+```
+becomes
+```php
+$product = Option($entityManager->find('Product', "some identifier"));
+$product->map(function($p){
+  return $p->getName();
 });
 
-$option->get();
+return $option->getOrElse("");
 ```
