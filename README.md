@@ -34,9 +34,9 @@ return "";
 becomes
 ```php
 $product = Option($entityManager->find('Product', "some identifier"));
-$product->map(function($p){
+$name = $product->map(function($p){
   return $p->getName();
 });
 
-return $option->getOrElse("");
+return $name->getOrElse("");
 ```
