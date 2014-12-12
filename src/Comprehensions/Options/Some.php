@@ -2,7 +2,7 @@
 
 namespace Comprehensions\Options {
 
-    class Some extends Option
+    final class Some extends Option
     {
         public function __construct($value)
         {

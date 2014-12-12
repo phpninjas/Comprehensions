@@ -4,7 +4,7 @@ namespace Comprehensions\Options;
 
 use Comprehensions\NoSuchElementException;
 
-class None extends Option
+final class None extends Option
 {
     public function __construct()
     {
