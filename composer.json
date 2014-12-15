@@ -3,8 +3,8 @@
         "phpunit/phpunit": "3.7.*"
     },
     "autoload": {
-        "psr-0": {
-            "Comprehensions\\": "src/"
+        "psr-4": {
+            "Comprehensions\\": "src/Comprehensions"
         }
     }
 }

@@ -107,11 +107,12 @@ class OptionTest extends PHPUnit_Framework_TestCase
 
     public function testNoneEach()
     {
-        $this->setExpectedException("Comprehensions\NoSuchElementException");
-        $option2 = Option(null);
-        $option2->each(function ($v) use (&$stack) {
-            $stack[] = $v;
+        $option = Option(null);
+        $option->each(function ($v) use(&$stack){
+            // do nothing
+            $stack[] = 1;
         });
+        $this->assertThat($stack, $this->isEmpty());
     }
 
     public function testSomeFold(){
@@ -124,11 +125,12 @@ class OptionTest extends PHPUnit_Framework_TestCase
     }
 
     public function testNoneFold(){
-        $this->setExpectedException("Comprehensions\NoSuchElementException");
         $option = None();
-        $option->fold(function($v, $i){
+        $accumulated = $option->fold(function($v, $i){
             return $i+$v;
         });
+
+        $this->assertThat($option, $this->equalTo(None()));
 
     }
 

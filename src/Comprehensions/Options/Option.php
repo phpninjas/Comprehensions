@@ -35,7 +35,7 @@ abstract class Option // [Type A]
      */
     public function map(callable $func)
     {
-        return $this->isEmpty ? new None() : new Some($func($this->get()));
+        return $this->isEmpty() ? new None() : new Some($func($this->get()));
     }
 
     /**
@@ -66,24 +66,27 @@ abstract class Option // [Type A]
      * @param $func
      * @return mixed
      */
-    public function each(callable $func){
-        $func($this->get());
+    public function each(callable $func)
+    {
+        if (!$this->isEmpty()) $func($this->get());
     }
 
     /**
      * @param callable $func - A function that returns a boolean value when supplied with the value.
      * @return Option
      */
-    public function filter(callable $func){
-        return $func($this->get())? new None(): new Some($this->get());
+    public function filter(callable $func)
+    {
+        return $this->isEmpty() ? new None() : new Some($func($this->get()));
     }
 
     /**
      * The number of elements in the traversable
      * @return int
      */
-    public function count(){
-        return $this->isEmpty()?0:1;
+    public function count()
+    {
+        return $this->isEmpty() ? 0 : 1;
     }
 
 }
