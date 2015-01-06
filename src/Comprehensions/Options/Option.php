@@ -72,12 +72,12 @@ abstract class Option // [Type A]
     }
 
     /**
-     * @param callable $func - A function that returns a boolean value when supplied with the value.
+     * @param callable $func - A function that returns a boolean when supplied with the value.
      * @return Option
      */
     public function filter(callable $func)
     {
-        return $this->isEmpty() ? new None() : new Some($func($this->get()));
+        return ($this->isEmpty()||$func($this->get())) ? $this : new None();
     }
 
     /**
