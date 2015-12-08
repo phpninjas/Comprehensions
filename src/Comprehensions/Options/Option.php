@@ -56,9 +56,21 @@ abstract class Option // [Type A]
         }
     }
 
+    /**
+     * @param callable $func
+     * @return mixed
+     */
     public function getOrElse(callable $func)
     {
         return $this->isEmpty() ? $func() : $this->get();
+    }
+
+    /**
+     * @param $v
+     * @return mixed
+     */
+    public function orElse($v){
+        return !$this->isEmpty()?$this->get():$v;
     }
 
 

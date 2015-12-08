@@ -1,4 +1,3 @@
 <?php
 
-require_once "../vendor/autoload.php";
-require_once "../src/Comprehensions/Typed.php";
+require_once __DIR__."/../src/Comprehensions/Typed.php";
